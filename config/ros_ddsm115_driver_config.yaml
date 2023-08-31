@@ -1,0 +1,8 @@
+# RS485 serial port name
+port_name: "/dev/ttyUSB0"
+# array of strings representing names of wheels
+wheel_names: ["front_left_wheel", "front_right_wheel", "rear_left_wheel", "rear_right_wheel"]
+# array of numbers representing DDSM115 ids
+wheel_ids: [1, 2, 3, 4]
+# array of wheel directions
+wheel_directions: ["forward", "backward", "forward", "backward"]

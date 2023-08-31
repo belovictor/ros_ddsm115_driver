@@ -1,0 +1,5 @@
+<launch>
+    <node name="ros_ddsm115_driver" pkg="ros_ddsm115_driver" type="ros_ddsm115_driver_node" output="screen">
+        <rosparam file="$(find ros_ddsm115_driver)/config/ros_ddsm115_driver_config.yaml" />
+    </node>
+</launch>
