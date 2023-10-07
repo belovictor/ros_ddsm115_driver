@@ -154,11 +154,12 @@ ddsm115_drive_response DDSM115Communicator::setWheelRPM(int wheel_id, double rpm
   swap = drive_response[4];
   drive_response[4] = drive_response[5];
   drive_response[5] = swap;
-  memcpy(&drive_current, &drive_response[2], 2);
-  memcpy(&drive_velocity, &drive_response[4], 2);
-  memcpy(&drive_position, &drive_response[6], 2);
+  drive_current = (drive_response[2] << 8) + drive_response[3];
+  drive_velocity = (drive_response[4] << 8) + drive_response[5];
+  drive_position = (drive_response[6] << 8) + drive_response[7];
+  // ROS_INFO("drive %d : velocity = %d, position = %d", drive_response[0], drive_velocity, drive_position);
   result.velocity = (double)drive_velocity;
-  result.position = (double)drive_position * (360.0 / 65535.0);
+  result.position = (double)drive_position * (360.0 / 32767.0);
   result.current = (double)drive_current * (8.0 / 32767.0);
   result.result = DDSM115State::STATE_NORMAL;
   return result;
