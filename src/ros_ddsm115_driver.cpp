@@ -129,7 +129,7 @@ void wheelTargetVelocityCallback(const std_msgs::Float64::ConstPtr& target_veloc
   if (response.result == ddsm115::DDSM115State::STATE_NORMAL)
   {
     velocity_msg.data = rpm2Vel(response.velocity) * wheel_directions[wheel_index];
-    angle_msg.data = round(response.position * (2.0 * M_PI / 360.0) * wheel_directions[wheel_index] * 100) / 100;
+    angle_msg.data = round(response.position * (2.0 * M_PI / 360.0) * wheel_directions[wheel_index] * 100) / 100 * -1.0;
     current_msg.data = response.current;
     wheel_velocity_pubs[wheel_index].publish(velocity_msg);
     wheel_angle_pubs[wheel_index].publish(angle_msg);
