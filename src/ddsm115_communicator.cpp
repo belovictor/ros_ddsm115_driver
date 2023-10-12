@@ -34,15 +34,11 @@ DDSM115Communicator::DDSM115Communicator(std::string port_name)
   tty.c_cflag &= ~CSIZE; // Clear byte size bits
   tty.c_cflag |= CS8; // 8 bits per byte
   tty.c_cflag &= ~CRTSCTS; // Disable CTS/RTS
-  tty.c_lflag &= ~ECHO; // Disable echo
-  tty.c_lflag &= ~ECHOE; // Disable erasure
-  tty.c_lflag &= ~ECHONL; // Disable new-line echo
-  tty.c_lflag &= ~ISIG; // Disable interpretation of INTR, QUIT and SUSP
+  tty.c_lflag = 0; // Make tty raw
   tty.c_iflag &= ~(IXON | IXOFF | IXANY); // Turn off s/w flow ctrl
   tty.c_iflag &= ~(IGNBRK|BRKINT|PARMRK|ISTRIP|INLCR|IGNCR|ICRNL); // Disable any special handling of received bytes
   tty.c_oflag &= ~OPOST; // Prevent special interpretation of output bytes
   tty.c_oflag &= ~ONLCR; // Prevent conversion of newline to carriage return/line feed
-  // cfmakeraw(&tty);
   tty.c_cc[VTIME] = 1;  // Read timeout
   tty.c_cc[VMIN] = 0;
   // Set baud to 115200
