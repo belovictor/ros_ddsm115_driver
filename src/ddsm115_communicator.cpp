@@ -122,7 +122,7 @@ ddsm115_drive_response DDSM115Communicator::setWheelRPM(int wheel_id, double rpm
   }
   if (total_num_bytes < 10)
   {
-    ROS_WARN("Timeout reading DDSM115 response for wheel id %d", wheel_id);
+    // ROS_WARN("Timeout reading DDSM115 response for wheel id %d", wheel_id);
     // ROS_INFO("Received %d bytes", total_num_bytes);
     // for (int i = 0; i < 10; i++) {
     //   ROS_INFO("%02x", drive_response[i]);
